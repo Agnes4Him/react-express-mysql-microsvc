@@ -11,6 +11,7 @@ const Home = () => {
 
     const url = process.env.REACT_APP_BACKEND_URL
     const handleFormSubmit = (e) => {
+        console.log(url)
         e.preventDefault()
         if (username.length === 0 || email.length === 0) {
             setErrorMsg('Incomplete user data')
