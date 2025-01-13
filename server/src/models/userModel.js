@@ -7,8 +7,12 @@ class User {
     }
 
     static addUser(newUser, cb) {
-        // First check for existing user...
-        db.query('SELECT* FROM user WHERE email = ? OR username = ?', [newUser.email, newUser.username], (err, res) => {
+        db.query(`CREATE TABLE IF NOT EXISTS user (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(100) NOT NULL,
+                username VARCHAR(100) NOT NULL
+                )`)
+        db.query('SELECT * FROM user WHERE email = ? OR username = ?', [newUser.email, newUser.username], (err, res) => {
             if (err) {
                 console.log(err)
                 cb(err, null)
